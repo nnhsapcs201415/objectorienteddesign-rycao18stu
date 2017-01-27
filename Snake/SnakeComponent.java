@@ -10,7 +10,7 @@ import javax.swing.JComponent;
  */
 public class SnakeComponent extends JComponent
 {
-    PlayerTile[][] tiles = new PlayerTile[80][165];
+    PlayerTile[][] tiles = new PlayerTile[81][48];
     /**
      * Default constructor for the CityscapeComponent
      */
@@ -20,7 +20,9 @@ public class SnakeComponent extends JComponent
         {
             for (int b = 0; b < this.tiles[0].length; b++)
             {
-                this.tiles[a][b] = new PlayerTile(a * 10, b * 10);
+                this.tiles[a][b] = new PlayerTile(a * 20, b * 20);
+                if (a == 0 || b == 0 || a == 80 || b == 47) 
+                    this.tiles[a][b].setWall(true);
             }
         }
     }
@@ -50,49 +52,6 @@ public class SnakeComponent extends JComponent
      */
     public void nextFrame(int milliseconds)
     {
-        this.step = milliseconds % 2100;
-        this.step = this.step/1050;
-        if(this.down){
-            if(this.g < 10)
-            {
-                this.down = false;
-                this.sunny = false;
-                this.building.setWindowColor(255, 215, 0);
-                this.building2.setWindowColor(255, 215, 0);
-            }
-            this.g = (this.g - (4 * this.step));
-            this.b = (this.b - (5 * this.step));
-            this.background.setColor(0, this.g, this.b);
-            repaint();
-        } else {
-            if (this.g > 110)
-            {
-                this.down = true;
-                this.sunny = true;
-                this.building.setWindowColor(2, 97, 128);
-                this.building2.setWindowColor(2, 97, 128);
-            }
-            this.g = (this.g + (4 * this.step));
-            this.b = (this.b + (5 * this.step));
-            this.background.setColor(0, this.g, this.b);
-            repaint();
-        }
-        if (this.car.getXpos() > 1560)
-        {
-            this.car.setPosition(this.car.getXpos(), this.car.getYpos() - 60);
-            this.direction = "left";
-        } else if (this.car.getXpos() < 20) 
-        {
-            this.car.setPosition(this.car.getXpos(), this.car.getYpos() + 60);
-            this.direction = "right";
-        } else {
-        }
-        if (this.direction == "left")
-        {
-            this.car.setPosition(this.car.getXpos() - 10, this.car.getYpos());
-        } else {
-            this.car.setPosition(this.car.getXpos() + 10, this.car.getYpos());
-        }
         repaint();
     }
 }

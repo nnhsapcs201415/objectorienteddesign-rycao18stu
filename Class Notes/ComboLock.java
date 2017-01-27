@@ -17,13 +17,22 @@ public class ComboLock
     {
         this.currentNum = 0;
     }
+    
+    public void printNum()
+    {
+        System.out.println("Current Number the Dial is at: " + this.currentNum);
+    }
 
     public void turnLeft( int ticks )
     {
-        this.currentNum += ticks;
-        while (this.currentNum < 0)
+        this.currentNum -= ticks;
+        while (this.currentNum <= 0)
         {
             this.currentNum += 40;
+        }
+        while (this.currentNum >= 40)
+        {
+            this.currentNum -= 40;
         }
         if (this.currentNum == this.secret2)
         {
@@ -33,10 +42,14 @@ public class ComboLock
 
     public void turnRight( int ticks )
     {
-        this.currentNum -= ticks;
-        while (this.currentNum < 0)
+        this.currentNum += ticks;
+        while (this.currentNum <= 0)
         {
             this.currentNum += 40;
+        }
+        while (this.currentNum >= 40)
+        {
+            this.currentNum -= 40;
         }
         if (this.cracked1)
         {

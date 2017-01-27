@@ -20,7 +20,7 @@ public class SnakeViewer
         // create and configure the frame (window) for the program
         JFrame frame = new JFrame();
 
-        frame.setSize(1680 /* x */, 1050 /* y */);
+        frame.setSize(1650 /* x */, 1080 /* y */);
         frame.setTitle("Snake");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
