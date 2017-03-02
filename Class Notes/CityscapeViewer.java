@@ -1,14 +1,14 @@
 import javax.swing.JFrame;
 
 /**
- * Write a description of class SnakeViewer here.
+ * Class that contains the main method for the program and creates the frame containing the component.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author @rycao18stu
+ * @version 10/6/16
  */
-public class SnakeViewer
+public class CityscapeViewer
 {
-    // the cityscape will be animated for 180*1000 milliseconds
+    // the cityscape will be animated for 60*3000 milliseconds
     static final int ANIMATION_TIME_IN_MS = 1800000;
 
     /**
@@ -20,12 +20,12 @@ public class SnakeViewer
         // create and configure the frame (window) for the program
         JFrame frame = new JFrame();
 
-        frame.setSize(1650 /* x */, 1080 /* y */);
-        frame.setTitle("Snake");
+        frame.setSize(1680 /* x */, 1050 /* y */);
+        frame.setTitle("Cityscape");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // a frame contains a single component; create the Cityscape component and add it to the frame
-        SnakeComponent component = new SnakeComponent();
+        CityscapeComponent component = new CityscapeComponent();
         frame.add(component);
 
         // make the frame visible which will result in the paintComponent method being invoked on the
@@ -38,5 +38,7 @@ public class SnakeViewer
             component.nextFrame(milliseconds);
             Thread.sleep( 70 );
         }
+
     }
+
 }

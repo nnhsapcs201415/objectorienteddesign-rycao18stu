@@ -15,7 +15,7 @@ public class CashRegisterTester
       register.receivePayment(3, DOLLAR);
       register.receivePayment(2, QUARTER);
 
-      double change = register.giveChange();
+      double change = register.giveChange(DOLLAR);
 
       System.out.println(change);      
       System.out.println("Expected: 0.15");          

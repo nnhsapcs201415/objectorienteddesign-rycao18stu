@@ -1,11 +1,13 @@
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 
 
 /**
  * The window for the drawing editor.
  * 
- * @author gcschmit
+ * @author rycao
  * @version 23 June 2015
  */
 public class DrawingEditor extends JFrame
@@ -21,12 +23,10 @@ public class DrawingEditor extends JFrame
         DrawingPanel canvas = new DrawingPanel();
         ControlPanel controls = new ControlPanel( canvas );
         
-        // add the canvas and controls panels to the frame
-        // read the BorderLayout class documentation for specifics
+        this.add(canvas, BorderLayout.CENTER);
+        this.add(controls, BorderLayout.SOUTH);
         
-        //
-        // ... insert code here
-        //
+        // add code here
         
         this.pack();
         this.setVisible( true );
@@ -37,5 +37,4 @@ public class DrawingEditor extends JFrame
     {
        DrawingEditor drawingEditor = new DrawingEditor();
     }
-
 }
