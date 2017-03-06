@@ -32,4 +32,8 @@ public class Circle extends DrawingShape
         g2.draw(new Ellipse2D.Double(this.getCenter().getX() - radius/4, this.getCenter().getY() - radius/4, this.getRadius(), this.getRadius()));
         if(filled) g2.fill(new Ellipse2D.Double(this.getCenter().getX() - radius/4, this.getCenter().getY() - radius/4, this.getRadius(), this.getRadius()));
     }
+    public String toString()
+    {
+        return "Type: Circle, X-Coordinate: " + this.getCenter().getX() + ", Y-Coordinate: " + this.getCenter().getY() + " , Radius: " + this.getRadius() + ", Color: " + this.color.toString(); 
+    }
 }

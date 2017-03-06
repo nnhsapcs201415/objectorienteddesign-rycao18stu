@@ -33,8 +33,9 @@ public class DrawingPanel extends JPanel
             Point2D.Double origin;
             public void mousePressed(MouseEvent e)
             {
-                for (DrawingShape shape : list)
+                for (int i = 0; i < list.size(); i++)
                 {
+                    DrawingShape shape = list.get(i);
                     if(shape.isInside(new Point2D.Double(e.getX(), e.getY())))
                     {
                         origin = new Point2D.Double(e.getX(), e.getY());
@@ -44,26 +45,28 @@ public class DrawingPanel extends JPanel
             }
             public void mouseDragged(MouseEvent e)
             {
-                for (DrawingShape shape : list)
+                for (int i = 0; i < list.size(); i++)
                 {
+                    DrawingShape shape = list.get(i);
                     if(shape.isInside(new Point2D.Double(e.getX(), e.getY())))
                     {
                         moving = true;
                         activeShape.move(origin.getX() - e.getX(), origin.getY() - e.getY());
+                        origin = new Point2D.Double(e.getX(), e.getY());
                         repaint();
                     }
                 }
             }
             public void mouseReleased(MouseEvent e)
             {
-                moving = false;
+                moving = false; 
+                origin = null;
             }
         };
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
         this.list = new ArrayList<DrawingShape>();
         if (this.list.size() == 0) this.activeShape = null;
-        else this.activeShape = this.list.get(this.list.size() - 1);
         this.moving = false;
     }
 
@@ -128,11 +131,12 @@ public class DrawingPanel extends JPanel
         super.paintComponent(g2);
         for(int a = 0; a < list.size(); a++)
         {
+            System.out.println(this.activeShape);
+            System.out.println(list.get(a));
             if (this.activeShape == list.get(a))
             {
                 list.get(a).draw(g2, false);
-            }
-            else list.get(a).draw(g2, true);
+            } else list.get(a).draw(g2, true);
         }
     }
 }

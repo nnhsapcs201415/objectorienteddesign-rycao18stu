@@ -31,5 +31,8 @@ public class Square extends DrawingShape
         g2.setColor(this.getColor());
         g2.draw(new Rectangle2D.Double(this.getCenter().getX() - radius/2, this.getCenter().getY() - radius/2, this.getRadius(), this.getRadius()));
         if(filled) g2.fill(new Rectangle2D.Double(this.getCenter().getX() - radius/2, this.getCenter().getY() - radius/2, this.getRadius(), this.getRadius()));
+    }public String toString()
+    {
+        return "Type: Square, X-Coordinate: " + this.getCenter().getX() + ", Y-Coordinate: " + this.getCenter().getY() + " , Radius: " + this.getRadius() + ", Color: " + this.color.toString(); 
     }
 }
