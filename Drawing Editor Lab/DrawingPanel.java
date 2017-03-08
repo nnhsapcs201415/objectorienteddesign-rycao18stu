@@ -40,20 +40,36 @@ public class DrawingPanel extends JPanel
                     {
                         origin = new Point2D.Double(e.getX(), e.getY());
                         activeShape = shape;
+                        moving = true;
+                    } else if (shape.isOnBorder(new Point2D.Double(e.getX(), e.getY())))
+                    {
+                        activeShape = shape;
+                        moving = false;
                     }
+                    origin = new Point2D.Double(e.getX(), e.getY());
                 }
             }
-            public void mouseDragged(MouseEvent e)
+            public void mouseDragged(MouseEvent e) throws NullPointerException
             {
                 for (int i = 0; i < list.size(); i++)
                 {
                     DrawingShape shape = list.get(i);
-                    if(shape.isInside(new Point2D.Double(e.getX(), e.getY())))
+                    if (moving)
                     {
-                        moving = true;
-                        activeShape.move(origin.getX() - e.getX(), origin.getY() - e.getY());
-                        origin = new Point2D.Double(e.getX(), e.getY());
-                        repaint();
+                        if(shape.isInside(new Point2D.Double(e.getX(), e.getY())) && (shape == activeShape))
+                        {
+                            try {
+                                shape.move(origin.getX() - e.getX(), origin.getY() - e.getY());
+                            } catch (NullPointerException nullevent) {}
+                            origin = new Point2D.Double(e.getX(), e.getY());
+                            repaint();
+                        }
+                    } else
+                    {
+                        if (shape == activeShape)
+                        {
+                            shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(origin.getX() - e.getX(), 2) + Math.pow(origin.getY() - e.getY(), 2)));
+                        }
                     }
                 }
             }
@@ -131,10 +147,12 @@ public class DrawingPanel extends JPanel
         super.paintComponent(g2);
         for(int a = 0; a < list.size(); a++)
         {
-            System.out.println(this.activeShape);
-            System.out.println(list.get(a));
             if (this.activeShape == list.get(a))
             {
+                if (list.indexOf(this.activeShape) != list.size() - 1) 
+                {
+                    list.add(list.remove(list.indexOf(this.activeShape)));
+                }
                 list.get(a).draw(g2, false);
             } else list.get(a).draw(g2, true);
         }

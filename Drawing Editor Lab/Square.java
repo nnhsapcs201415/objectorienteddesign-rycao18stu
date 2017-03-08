@@ -18,12 +18,12 @@ public class Square extends DrawingShape
     }
     public boolean isInside(Point2D.Double point)
     {
-        if (Math.abs(this.getCenter().getX() - point.getX()) < radius && Math.abs(this.getCenter().getY() - point.getY()) < radius) return true;
+        if (Math.abs(this.getCenter().getX() - point.getX())*2 < radius && Math.abs(this.getCenter().getY() - point.getY())*2 < radius) return true;
         return false;
     }
     public boolean isOnBorder(Point2D.Double point)
     {
-        if ((this.getCenter().getX() - point.getX()) == radius && (this.getCenter().getY() - point.getY() < radius)) return true;
+        if ((Math.abs(this.getCenter().getX() - point.getX()) > (radius/2) - 5 && Math.abs(this.getCenter().getX() - point.getX()) < (radius/2) + 5)|| (Math.abs(this.getCenter().getY() - point.getY()) > (radius/2) - 5 && Math.abs(this.getCenter().getY() - point.getY()) < (radius/2) + 5)) return true;
         return false;
     }
     public void draw(Graphics2D g2, boolean filled)

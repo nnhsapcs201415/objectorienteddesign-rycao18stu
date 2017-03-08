@@ -18,12 +18,12 @@ public class Circle extends DrawingShape
     }
     public boolean isInside(Point2D.Double point)
     {
-        if(Math.sqrt(Math.pow(point.getX() - this.getCenter().getX(), 2) + Math.pow(point.getY() - this.getCenter().getY(), 2)) < radius) return true;
+        if(Math.sqrt(Math.pow(point.getX() - this.getCenter().getX(), 2) + Math.pow(point.getY() - this.getCenter().getY(), 2)) * 2 < radius) return true;
         return false;
     }
     public boolean isOnBorder(Point2D.Double point)
     {
-        if(Math.sqrt(Math.pow(point.getX() - this.getCenter().getX(), 2) + Math.pow(point.getY() - this.getCenter().getY(), 2)) == radius) return true;
+        if(Math.sqrt(Math.pow(point.getX() - this.getCenter().getX(), 2) + Math.pow(point.getY() - this.getCenter().getY(), 2)) * 2 > radius - 5) return true;
         return false;
     }
     public void draw(Graphics2D g2, boolean filled)
