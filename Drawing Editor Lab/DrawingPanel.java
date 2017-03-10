@@ -31,6 +31,7 @@ public class DrawingPanel extends JPanel
         MouseAdapter mouseAdapter = new MouseAdapter()
         {
             Point2D.Double origin;
+            Point2D.Double lastPoint;
             public void mousePressed(MouseEvent e)
             {
                 for (int i = 0; i < list.size(); i++)
@@ -68,8 +69,34 @@ public class DrawingPanel extends JPanel
                     {
                         if (shape == activeShape)
                         {
-                            shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(origin.getX() - e.getX(), 2) + Math.pow(origin.getY() - e.getY(), 2)));
+                            try {
+                                if (e.getY() > shape.getCenter().getY())
+                                {
+                                    if (lastPoint.getX() - e.getX() > 0)
+                                    {
+                                        if (lastPoint.getY() - e.getY() < 0) shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                        else shape.setRadius(shape.getRadius() - Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                    } else 
+                                    {
+                                        if (lastPoint.getY() - e.getY() < 0) shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                        else shape.setRadius(shape.getRadius() - Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                    }
+                                } else 
+                                {
+                                    if (lastPoint.getX() - e.getX() > 0)
+                                    {
+                                        if (lastPoint.getY() - e.getY() < 0) shape.setRadius(shape.getRadius() - Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                        else shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                    } else 
+                                    {
+                                        if (lastPoint.getY() - e.getY() < 0) shape.setRadius(shape.getRadius() - Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                        else shape.setRadius(shape.getRadius() + Math.sqrt(Math.pow(lastPoint.getX() - e.getX(), 2) + Math.pow(lastPoint.getY() - e.getY(), 2)));
+                                    }
+                                }
+                            } catch (Exception eeee) {}
+                            lastPoint = new Point2D.Double(e.getX(), e.getY());
                         }
+                        repaint();
                     }
                 }
             }
@@ -77,6 +104,7 @@ public class DrawingPanel extends JPanel
             {
                 moving = false; 
                 origin = null;
+                lastPoint = null;
             }
         };
         addMouseListener(mouseAdapter);
