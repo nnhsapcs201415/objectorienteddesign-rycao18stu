@@ -13,8 +13,8 @@ import java.awt.geom.Point2D;
 /**
  * The panel in which draws all of the shapes in the drawing editor
  * 
- * @author gcschmit
- * @version 23 June 2015
+ * @author rycao18stu
+ * @version 1 march 2017
  */
 public class DrawingPanel extends JPanel
 {
@@ -168,7 +168,11 @@ public class DrawingPanel extends JPanel
         this.activeShape = square;
         repaint();
     }
-
+    /**
+     * paints the jpanel
+     * 
+     * @param g Graphics object to paint on
+     */
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;

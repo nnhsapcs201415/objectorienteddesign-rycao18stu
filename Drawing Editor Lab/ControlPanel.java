@@ -7,7 +7,7 @@ import java.awt.Color;
 /**
  * The panel that contains the controls and indicators for the drawing editor
  * 
- * @author gcschmit
+ * @author rycao18stu
  * @version 23 June 2015
  */
 public class ControlPanel extends JPanel
